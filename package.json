@@ -1,0 +1,19 @@
+{
+  "name": "techtutor-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TSPeterson206/techTutor-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TSPeterson206/techTutor-backend/issues"
+  },
+  "homepage": "https://github.com/TSPeterson206/techTutor-backend#readme"
+}
