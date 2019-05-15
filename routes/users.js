@@ -9,6 +9,7 @@ router.get('/', usersCtrl.getAllUsers)
 router.get('/:userId', usersCtrl.getOneUser)
 router.put('/:userId', usersCtrl.editOneUser)
 router.post('/', usersCtrl.signup, authCtrl.login)
-router.post('/:userId/avatar', usersCtrl.uploadImage)
+// router.post('/:userId/avatar', usersCtrl.uploadImage)
+router.delete('/:userId', usersCtrl.deleteUser)
 
 module.exports = router
