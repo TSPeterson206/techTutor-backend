@@ -2,14 +2,12 @@ const express = require('express')
 const router = express.Router({
   mergeParams: true
 })
-const reviewsCtrl = require('../controllers/reviews')
+const locationsCtrl = require('../controllers/locations')
 
-router.get('/', reviewsCtrl.getAllReviews)
-router.get('/:reviewId', reviewsCtrl.getOneReview)
-router.get('/providers/:providerId', reviewsCtrl.getOneProviderReviews)
-router.get('/users/:userId', reviewsCtrl.getOneUserReviews)
-router.post('/', reviewsCtrl.addReview)
-router.put('/:reviewId', reviewsCtrl.updateReview)
-router.delete('/:reviewId', reviewsCtrl.deleteReview)
+router.get('/:tutorId', locationsCtrl.getOneTutorLocations)
+router.get('/', locationsCtrl.getAllLocations)
+// router.post('/', locationsCtrl.addOneTutorLocation)
+router.delete('/', locationsCtrl.deleteOneTutorLocation)
+
 
 module.exports = router

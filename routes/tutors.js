@@ -9,8 +9,11 @@ router.get('/:tutorId', tutorsCtrl.getOneTutor)
 router.delete('/:tutorId', tutorsCtrl.deleteTutor)
 router.post('/', tutorsCtrl.addTutor)
 router.put('/:tutorId', tutorsCtrl.editTutor)
-router.get('/:tutorId/technologies', tutorsCtrl.getOneTutorTechnologies)
-router.post('/:tutorId/technologies', tutorsCtrl.editOneTutorTechnologies)
-router.delete('/:tutorId/technologies', tutorsCtrl.deleteOneTutorTechnologies)
+
+// router.get('/:tutorId/technologies', tutorsCtrl.getOneTutorTechnologies)
+// router.post('/:tutorId/technologies', tutorsCtrl.editOneTutorTechnologies)
+// router.delete('/:tutorId/technologies', tutorsCtrl.deleteOneTutorTechnologies)
+
+// router.get('/:tutorId', tutorsCtrl.getOneTutorLocations)
 
 module.exports = router
