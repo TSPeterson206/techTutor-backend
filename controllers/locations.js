@@ -23,23 +23,31 @@ const model = require('../models/locations')
 // }
 
 function getOneTutorLocations (req, res, next) {
-  model.getOneTutorLocations(req.params.userId)
+  model.getOneTutorLocations(req.params.tutorId)
     .then((result) => {
       res.status(200).send(result)
     })
     .catch(next)
 }
 
-function deleteOneTutorLocations (req, res, next) {
-  return model.deleteOneTutorLocations(req.params.locationId)
-    .then((result) =>
+function getAllLocations (req,res,next) {
+  model.getAllLocations()
+  .then((result) =>
       res.status(200).send(result)
     )
     .catch(err => next(err))
 }
 
+function deleteOneTutorLocation (req,res,next) {
+  model.deleteOneTutorLocation(req.params.tutorId, req.params.locationId)
+  .then((result) => {
+    res.status(200).send(result)
+  })
+  .catch(next)
+}
+
 module.exports = {
-  // addAFavorite,
+  getAllLocations,
   getOneTutorLocations,
-  deleteOneTutorLocations
+  deleteOneTutorLocation
 }
