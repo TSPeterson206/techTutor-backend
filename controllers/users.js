@@ -5,9 +5,8 @@ function signup (req, res, next) {
   const {
     username,
     password,
-    tagline,
     profilepic,
-    soberdate
+    location
   } = req.body
   if (!username && !password) {
     return next({
@@ -15,7 +14,7 @@ function signup (req, res, next) {
       message: 'Username and Password required for creating an account'
     })
   }
-  return usersModel.signup(username, password, tagline, profilepic, soberdate)
+  return usersModel.signup(username, password, profilepic, location)
     .then(([data]) => {
       if (!data) {
         return next({
@@ -57,15 +56,13 @@ function getAllUsers (req, res, next) {
 function editOneUser (req, res, next) {
   let {
     profilepic,
-    tagline,
-    soberdate
+    location
   } = req.body
 
-  soberdate = soberdate || undefined
+  location = location || undefined
   profilepic = profilepic || undefined
-  tagline = tagline || undefined
 
-  if (!profilepic && !tagline) {
+  if (!profilepic && !location) {
     return next({
       status: 400,
       message: 'No input provided'
@@ -74,8 +71,7 @@ function editOneUser (req, res, next) {
 
   req.body = {
     profilepic,
-    tagline,
-    soberdate
+    location
   }
 
   return usersModel.editOneUser(req.params.userId, req.body)
@@ -116,10 +112,24 @@ function uploadImage (req, res, next) {
   return imageurl
 }
 
+function deleteUser (req, res, next) {
+  return usersModel.deleteUser(req.params.userId)
+    .then((result) => {
+      if (!result) {
+        return next({
+          status: 404,
+          message: 'account not found'
+        })
+      }
+      res.status(200).send(result)
+    })
+}
+
 module.exports = {
   signup,
   getOneUser,
   getAllUsers,
   editOneUser,
-  uploadImage
+  uploadImage,
+  deleteUser
 }
