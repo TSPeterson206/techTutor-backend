@@ -1,32 +1,37 @@
 const knex = require('../db/knex')
 
-function addGoal (body) {
+function addOneTutorTechnologies (body) {
   console.log(body)
-  return knex('goals')
+  return knex('tutors_technologies')
     .insert({
       'id': body.id,
-      'user_id': body.user_id,
-      'goal': body.goal,
-      'enddate': body.enddate
-    })
+      'tutor_id': body.tutor_id,
+      'tech_id': body.tech_id
+        })
 
     .returning('*')
     .then(result => result)
 }
 
-function getOneUserGoals (userId) {
-  return knex('goals')
+function getAllTechnologies () {
+  return knex('technologies')
+  .returning('*')
+}
+
+function getOneTutorTechnologies (tutorId) {
+  return knex('tutors_technologies')
     .where({
-      'goals.user_id': userId
+      'tutors_technologies.tutor_id': tutorId
     })
     .returning('*')
     .then(result => result)
 }
 
-function deleteGoal (goalId) {
-  return knex('goals')
+function deleteOneTutorTechnologies (tutorId, technologiesId) {
+  return knex('tutors_technologies')
     .where({
-      'goals.id': goalId
+      'tutors_technologies.tutor_id': tutorId,
+      'tutors_technologies.tech_id': technologiesId
     })
     .del()
     .returning('*')
@@ -34,7 +39,13 @@ function deleteGoal (goalId) {
 }
 
 module.exports = {
-  addGoal,
-  getOneUserGoals,
-  deleteGoal
+  getAllTechnologies,
+  getOneTutorTechnologies, 
+  deleteOneTutorTechnologies,
+  addOneTutorTechnologies
 }
+
+// router.get('/', technologiesCtrl.getAllTechnologies)
+// router.get('/:tutorId', technologiesCtrl.getOneTutorTechnologies)
+// router.post('/:tutorId', technologiesCtrl.addOneTutorTechnologies)
+// router.delete('/:tutorId/technologies/:technologiesId', technologiesCtrl.deleteOneTutorTechnologies)

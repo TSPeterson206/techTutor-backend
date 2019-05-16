@@ -1,47 +1,36 @@
 const model = require('../models/technologies')
 
-// function addOneTutorLocation (req, res, next) {
-//   let {
-//     goal,
-//     user_id,
-    
-//   } = req.body
-//   model.addGoal(req.body)
-//     .then((result) => {
-//       if (!result) {
-//         return next({
-//           status: 500,
-//           message: 'error'
-//         })
-//       }
-//       res.status(201).send({
-//         goal,
-//         user_id,
-//         enddate,
-//         created_at: result[0].created_at
-//       })
-//     })
-//     .catch(next)
-// }
+// router.get('/', technologiesCtrl.getAllTechnologies)
+// router.get('/:tutorId', technologiesCtrl.getOneTutorTechnologies)
+// router.post('/:tutorId', technologiesCtrl.addOneTutorTechnologies)
+// router.delete('/:tutorId/technologies/:technologiesId', technologiesCtrl.deleteOneTutorTechnologies)
 
-function getOneTutorLocations (req, res, next) {
-  model.getOneTutorLocations(req.params.tutorId)
+function getOneTutorTechnologies (req, res, next) {
+  model.getOneTutorTechnologies(req.params.tutorId)
     .then((result) => {
       res.status(200).send(result)
     })
     .catch(next)
 }
 
-function getAllLocations (req,res,next) {
-  model.getAllLocations()
+function getAllTechnologies (req,res,next) {
+  model.getAllTechnologies()
   .then((result) =>
       res.status(200).send(result)
     )
     .catch(err => next(err))
 }
 
-function deleteOneTutorLocation (req,res,next) {
-  model.deleteOneTutorLocation(req.oarams.tutorId)
+function addOneTutorTechnologies (req,res,next) {
+  model.addOneTutorTechnologies(req.params.tutorId)
+  .then((result) =>
+      res.status(200).send(result)
+    )
+    .catch(err => next(err))
+}
+
+function deleteOneTutorTechnologies (req,res,next) {
+  model.deleteOneTutorTechnologies(req.params.tutorId, req.params.technologiesId)
   .then((result) => {
     res.status(200).send(result)
   })
@@ -49,8 +38,8 @@ function deleteOneTutorLocation (req,res,next) {
 }
 
 module.exports = {
-  getAllLocations,
-  getOneTutorLocations, 
-  deleteOneTutorLocation
-  // addOneTutorLocation
+  getAllTechnologies,
+  getOneTutorTechnologies, 
+  deleteOneTutorTechnologies,
+  addOneTutorTechnologies
 }
