@@ -55,10 +55,14 @@ function getAllUsers (req, res, next) {
 
 function editOneUser (req, res, next) {
   let {
-    profilepic,
-    location
+    username,
+        password,
+        profilepic,
+        location
   } = req.body
 
+  username = username || undefined
+  password = password || undefined
   location = location || undefined
   profilepic = profilepic || undefined
 
@@ -70,6 +74,8 @@ function editOneUser (req, res, next) {
   }
 
   req.body = {
+    username,
+    password,
     profilepic,
     location
   }
@@ -83,9 +89,10 @@ function editOneUser (req, res, next) {
         })
       }
       res.status(201).send({
+        username,
+        password,
         profilepic,
-        tagline,
-        soberdate
+        location
       })
     })
 }
