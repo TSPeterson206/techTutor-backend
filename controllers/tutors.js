@@ -34,7 +34,7 @@ function addTutor(req, res, next) {
   let {
     tutorname,
     password,
-    picture,
+    tutorpic,
     rate
   } = req.body
 
@@ -49,7 +49,7 @@ function addTutor(req, res, next) {
       res.status(201).send({
         tutorname,
         password,
-        picture,
+        tutorpic,
         rate
       })
     })
@@ -60,14 +60,17 @@ function editTutor(req, res, next) {
   let {
     tutorname,
     password,
-    picture,
+    tutorpic,
     rate
   } = req.body
 
-  location = location || undefined
-  profilepic = profilepic || undefined
+  tutorname = tutorname || undefined
+  password = password || undefined
+  // location = location || undefined
+  tutorpic = tutorpic || undefined
+  rate = rate || undefined
 
-  if (!profilepic && !location) {
+  if (!tutorpic && !tutorname && !password && !rate) {
     return next({
       status: 400,
       message: 'No input provided'
@@ -75,11 +78,13 @@ function editTutor(req, res, next) {
   }
 
   req.body = {
-    profilepic,
-    location
+    tutorname,
+    password,
+    tutorpic,
+    rate
   }
 
-  return usersModel.editTutor(req.params.tutorId, req.body)
+  return model.editTutor(req.params.tutorId, req.body)
     .then((result) => {
       if (!result) {
         return next({
@@ -90,7 +95,7 @@ function editTutor(req, res, next) {
       res.status(201).send({
         tutorname,
         password,
-        picture,
+        tutorpic,
         rate
       })
     })

@@ -4,11 +4,10 @@ function addOneTutorTechnologies (body) {
   console.log(body)
   return knex('tutors_technologies')
     .insert({
-      'id': body.id,
+      // 'id': body.id,
       'tutor_id': body.tutor_id,
       'tech_id': body.tech_id
         })
-
     .returning('*')
     .then(result => result)
 }
@@ -23,17 +22,21 @@ function getOneTutorTechnologies (tutorId) {
     .where({
       'tutors_technologies.tutor_id': tutorId
     })
+    .innerJoin('technologies', 'technologies.id', 'tutors_technologies.tech_id')
     .returning('*')
     .then(result => result)
 }
 
-function deleteOneTutorTechnologies (tutorId, technologiesId) {
+function deleteOneTutorTechnologies (
+  // tutorId, 
+  technologiesId) {
   return knex('tutors_technologies')
+  .select('*')
     .where({
-      'tutors_technologies.tutor_id': tutorId,
-      'tutors_technologies.tech_id': technologiesId
+      // 'tutors_technologies.tutor_id': tutorId,
+      'tutors_technologies.id': technologiesId
     })
-    .del()
+    .del('*')
     .returning('*')
     .then(result => result)
 }

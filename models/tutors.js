@@ -6,15 +6,16 @@ function getAllTutors () {
 }
 
 function getOneTutor (tutorId) {
-  return knex('tutor')
+  return knex('tutors')
     .where({
       'tutors.id': tutorId
     })
+    .returning('*')
     .then(result => result)
 }
 
 function deleteTutor (tutorId) {
-  return knex('tutor')
+  return knex('tutors')
     .where({
       'tutors.id': tutorId
     })
@@ -40,7 +41,7 @@ function editTutor (tutorId, body) {
       'tutors.id': tutorId
     })
     .update({
-      tutorName:body.tutorName,
+      tutorname:body.tutorname,
       password:body.password,
       tutorpic:body.tutorpic,
       rate:body.rate
