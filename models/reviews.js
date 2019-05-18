@@ -5,7 +5,7 @@ function addReview (body) {
     .insert({
       'user_id': body.user_id,
       'content': body.content,
-      'provider_id': body.provider_id,
+      'tutor_id': body.tutor_id,
       'rating': body.rating
     })
     .returning('*')
@@ -25,10 +25,10 @@ function getAllReviews () {
     .then(result => result)
 }
 
-function getOneProviderReviews (providerId) {
+function getOneTutorReviews (tutorId) {
   return knex('reviews')
     .where({
-      'reviews.provider_id': providerId
+      'reviews.tutor_id': tutorId
     })
     .then(result => result)
 }
@@ -52,24 +52,24 @@ function deleteReview (reviewId) {
     .then(result => result)
 }
 
-function updateReview (reviewId, body) {
-  return knex('reviews')
-    .where({
-      'reviews.id': reviewId
-    })
-    .update({
-      content: body.content,
-      rating: body.rating
-    })
-    .returning('*')
-}
+// function updateReview (reviewId, body) {
+//   return knex('reviews')
+//     .where({
+//       'reviews.id': reviewId
+//     })
+//     .update({
+//       content: body.content,
+//       rating: body.rating
+//     })
+//     .returning('*')
+// }
 
 module.exports = {
   addReview,
   getOneReview,
   getAllReviews,
-  getOneProviderReviews,
+  getOneTutorReviews,
   getOneUserReviews,
-  deleteReview,
-  updateReview
+  deleteReview
+  // updateReview
 }

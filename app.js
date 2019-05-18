@@ -16,6 +16,8 @@ app.use('/auth', require('./routes/auth'))
 app.use('/tutors', require('./routes/tutors'))
 app.use('/technologies', require('./routes/technologies'))
 app.use('/locations', require('./routes/locations'))
+app.use('/reviews', require('./routes/reviews'))
+
 
 app.use((req, res, next) => {
   next({ status: 404, message: 'Unable to locate' })
