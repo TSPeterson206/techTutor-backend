@@ -15,4 +15,7 @@ exports.seed = function (knex, Promise) {
     .then(() => {
       return knex('tutors_technologies').del()
     })
+    .then(() => {
+      return knex('reviews').del()
+    })
 }

@@ -5,7 +5,7 @@ function addReview (req, res, next) {
     content,
     rating,
     user_id,
-    provider_id
+    tutor_id
   } = req.body
   model.addReview(req.body)
     .then((result) => {
@@ -19,7 +19,7 @@ function addReview (req, res, next) {
         content,
         rating,
         user_id,
-        provider_id
+        tutor_id
       })
     })
     .catch(next)
@@ -41,8 +41,8 @@ function getAllReviews (req, res, next) {
     .catch(next)
 }
 
-function getOneProviderReviews (req, res, next) {
-  model.getOneProviderReviews(req.params.providerId)
+function getOneTutorReviews (req, res, next) {
+  model.getOneTutorReviews(req.params.tutorId)
     .then((result) => {
       res.status(200).send(result)
     })
@@ -71,34 +71,34 @@ function deleteReview (req, res, next) {
     .catch(err => next(err))
 }
 
-function updateReview (req, res, next) {
-  let {
-    content,
-    rating
-  } = req.body
+// function updateReview (req, res, next) {
+//   let {
+//     content,
+//     rating
+//   } = req.body
 
-  return model.updateReview(req.params.reviewId, req.body)
-    .then((result) => {
-      if (!result) {
-        return next({
-          status: 404,
-          message: 'error'
-        })
-      }
-      res.status(201).send({
-        content,
-        rating
-      })
-    })
-    .catch(next)
-}
+//   return model.updateReview(req.params.reviewId, req.body)
+//     .then((result) => {
+//       if (!result) {
+//         return next({
+//           status: 404,
+//           message: 'error'
+//         })
+//       }
+//       res.status(201).send({
+//         content,
+//         rating
+//       })
+//     })
+//     .catch(next)
+// }
 
 module.exports = {
   addReview,
   getOneReview,
   getAllReviews,
-  getOneProviderReviews,
+  getOneTutorReviews,
   getOneUserReviews,
-  deleteReview,
-  updateReview
+  deleteReview
+  // updateReview
 }
