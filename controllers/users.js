@@ -1,6 +1,11 @@
 const usersModel = require('../models/users')
 const cloudinary = require('cloudinary')
 
+// LOGGER
+const logger = require('../app')
+
+//////
+
 function signup (req, res, next) {
   const {
     username,
@@ -41,6 +46,8 @@ function getOneUser (req, res, next) {
 }
 
 function getAllUsers (req, res, next) {
+  console.log('hitting it')
+  logger.info('hello there Tito')
   return usersModel.getAllUsers()
     .then((result) => {
       if (!result) {
