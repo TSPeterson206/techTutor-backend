@@ -31,6 +31,8 @@
     "morgan": "^1.9.1",
     "nodemon": "^1.19.0",
     "pg": "^7.11.0",
-    "run-all": "^1.0.1"
+    "run-all": "^1.0.1",
+    "winston": "^3.2.1",
+    "winston-daily-rotate-file": "^4.2.1"
   }
 }
